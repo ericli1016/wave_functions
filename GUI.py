@@ -48,7 +48,7 @@ class MainFrame():
         for text, mode in MODES:
             radiobttn = Radiobutton(self.radiobttnframe, text=text,
                                     variable=v, value = mode)
-            radiobttn.grid(row=mode, sticky = W)
+            radiobttn.grid(row=mode, padx=20, sticky = W)
             self.radiobttnlist.append(radiobttn)
 
         
