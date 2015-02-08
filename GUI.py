@@ -66,6 +66,9 @@ class MainFrame():
         self.canvas.create_line(0, self.canvas.winfo_height()/2,
                                 self.canvas.winfo_width(), self.canvas.winfo_height()/2,
                                 width = 1)
+        self.canvas.create_line(self.canvas.winfo_width()/2-180, 0,
+                                self.canvas.winfo_width()/2-180, self.canvas.winfo_height(),
+                                width = 1)
 
 root = Tk()
 MainFrame(root)
