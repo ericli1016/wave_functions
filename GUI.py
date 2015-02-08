@@ -33,6 +33,7 @@ class MainFrame():
         self.radiobttnframe = Frame(self.frame)
         self.radiobttnframe.grid(row=1, column=1, sticky=(N, S))
         self.radiobttnlist = []
+        self.radiovariable = IntVar()
         self.buildradio()
 
     def buildradio(self):
@@ -42,12 +43,11 @@ class MainFrame():
             ("Square Wave", 1),
             ("Cosine Wave", 2)]
 
-        v = IntVar()
-        v.set(0)
+        self.radiovariable.set(0)
 
         for text, mode in MODES:
             radiobttn = Radiobutton(self.radiobttnframe, text=text,
-                                    variable=v, value = mode)
+                                    variable=self.radiovariable, value = mode)
             radiobttn.grid(row=mode, padx=20, sticky = W)
             self.radiobttnlist.append(radiobttn)
 
