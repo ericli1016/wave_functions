@@ -27,7 +27,7 @@ class MainFrame():
         self.bttn1 = Button(self.bttnframe, text = "Previous", command = self.prev_mode)
         self.bttn1.grid(row=0, column = 0, sticky=(W, E))
 
-        self.bttn2 = Button(self.bttnframe, text = "Next")
+        self.bttn2 = Button(self.bttnframe, text = "Next", command = self.next_mode)
         self.bttn2.grid(row=0, column = 1, sticky=(W, E))
 
         self.radiobttnframe = Frame(self.frame)
@@ -55,7 +55,9 @@ class MainFrame():
         mode = self.radiovariable.get()
         self.radiovariable.set((mode - 1) % len(self.radiobttnlist))
 
-        
+    def next_mode(self):
+        mode = self.radiovariable.get()
+        self.radiovariable.set((mode + 1) % len(self.radiobttnlist))
 
 root = Tk()
 MainFrame(root)
