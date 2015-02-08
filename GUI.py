@@ -32,6 +32,7 @@ class MainFrame():
 
         self.radiobttnframe = Frame(self.frame)
         self.radiobttnframe.grid(row=1, column=1, sticky=(N, S))
+        self.radiobttnlist = []
         self.buildradio()
 
     def buildradio(self):
@@ -48,6 +49,9 @@ class MainFrame():
             radiobttn = Radiobutton(self.radiobttnframe, text=text,
                                     variable=v, value = mode)
             radiobttn.grid(row=mode, sticky = W)
+            self.radiobttnlist.append(radiobttn)
+
+        
 
 root = Tk()
 MainFrame(root)
