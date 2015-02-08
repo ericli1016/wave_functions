@@ -29,6 +29,9 @@ class MainFrame():
 
         self.bttn2 = Button(self.bttnframe, text = "Next")
         self.bttn2.grid(row=0, column = 1, sticky=(W, E))
+
+        self.radiobttnframe = Frame(self.frame)
+        self.radiobttnframe.grid(row=1, column=1, sticky=(N, S))
         self.buildradio()
 
     def buildradio(self):
@@ -41,11 +44,8 @@ class MainFrame():
         v = IntVar()
         v.set(0)
 
-        radiobttnframe = Frame(self.frame)
-        radiobttnframe.grid(row=1, column=1, sticky=(N, S))
-
         for text, mode in MODES:
-            radiobttn = Radiobutton(radiobttnframe, text=text,
+            radiobttn = Radiobutton(self.radiobttnframe, text=text,
                                     variable=v, value = mode)
             radiobttn.grid(row=mode, sticky = W)
 
