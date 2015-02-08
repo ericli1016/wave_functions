@@ -36,6 +36,9 @@ class MainFrame():
         self.radiovariable = IntVar()
         self.buildradio()
 
+        parent.update()
+        self.draw_axis()
+
     def buildradio(self):
 
         MODES = [
@@ -58,6 +61,11 @@ class MainFrame():
     def next_mode(self):
         mode = self.radiovariable.get()
         self.radiovariable.set((mode + 1) % len(self.radiobttnlist))
+
+    def draw_axis(self):
+        self.canvas.create_line(0, self.canvas.winfo_height()/2,
+                                self.canvas.winfo_width(), self.canvas.winfo_height()/2,
+                                width = 1)
 
 root = Tk()
 MainFrame(root)
