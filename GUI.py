@@ -38,6 +38,7 @@ class MainFrame():
         
         parent.update()
         self.draw_axis()
+        self.draw_fn()
         self.canvas.bind("<Configure>",self.resize)        
         
     def buildradio(self):
@@ -77,6 +78,12 @@ class MainFrame():
         self.canvas.delete(self.x_axis)
         self.canvas.delete(self.y_axis)
         self.draw_axis()
+
+    def draw_fn(self):
+        self.wave = self.canvas.create_line(
+            0, self.canvas.winfo_height()/2,
+            self.canvas.winfo_width(), self.canvas.winfo_height()/2,
+            width = 3)
 
 root = Tk()
 MainFrame(root)
