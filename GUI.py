@@ -73,17 +73,17 @@ class MainFrame():
             self.canvas.winfo_width()/2-180, 0,
             self.canvas.winfo_width()/2-180, self.canvas.winfo_height(),
             width = 1)
-        
-    def resize(self, event):
-        self.canvas.delete(self.x_axis)
-        self.canvas.delete(self.y_axis)
-        self.draw_axis()
 
     def draw_fn(self):
         self.wave = self.canvas.create_line(
             0, self.canvas.winfo_height()/2,
             self.canvas.winfo_width(), self.canvas.winfo_height()/2,
             width = 3)
+        
+    def resize(self, event):
+        self.canvas.delete(self.x_axis)
+        self.canvas.delete(self.y_axis)
+        self.draw_axis()
 
 root = Tk()
 MainFrame(root)
