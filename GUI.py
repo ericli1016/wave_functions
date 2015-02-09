@@ -75,10 +75,10 @@ class MainFrame():
             width = 1)
 
     def draw_fn(self):
-        self.square_wave()
+        self.cos_wave()
 
     def flatline(self):
-        wave = self.canvas.create_line(
+        self.canvas.create_line(
             0, self.canvas.winfo_height()/2,
             self.canvas.winfo_width(), self.canvas.winfo_height()/2,
             width = 3)
@@ -94,10 +94,20 @@ class MainFrame():
                 y = y_origin - delta
             else:
                 y = y_origin + delta
-
             self.canvas.create_line(x0, y0, x, y, width=3)
             x0 = x
-            y0 = y 
+            y0 = y
+
+    def cos_wave(self):
+        x_origin = self.canvas.winfo_width()/2-180
+        y_origin = self.canvas.winfo_height()/2
+        x0 = 0
+        for x in range(0,self.canvas.winfo_width()):
+            y = y_origin - 200* math.cos(math.radians(x - x_origin))
+            y0 = y
+            self.canvas.create_line(x0, y0, x, y, width=3)
+            x0 = x
+            y0 = y
         
     def resize(self, event):
         self.canvas.delete("all")
