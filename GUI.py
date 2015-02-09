@@ -81,9 +81,9 @@ class MainFrame():
             width = 3)
         
     def resize(self, event):
-        self.canvas.delete(self.x_axis)
-        self.canvas.delete(self.y_axis)
+        self.canvas.delete("all")
         self.draw_axis()
+        self.draw_fn()
 
 root = Tk()
 MainFrame(root)
