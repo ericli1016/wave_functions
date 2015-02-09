@@ -35,10 +35,11 @@ class MainFrame():
         self.radiobttnlist = []
         self.radiovariable = IntVar()
         self.buildradio()
-
+        
         parent.update()
         self.draw_axis()
-
+        self.canvas.bind("<Configure>",self.resize)        
+        
     def buildradio(self):
 
         MODES = [
@@ -63,12 +64,19 @@ class MainFrame():
         self.radiovariable.set((mode + 1) % len(self.radiobttnlist))
 
     def draw_axis(self):
-        self.canvas.create_line(0, self.canvas.winfo_height()/2,
-                                self.canvas.winfo_width(), self.canvas.winfo_height()/2,
-                                width = 1)
-        self.canvas.create_line(self.canvas.winfo_width()/2-180, 0,
-                                self.canvas.winfo_width()/2-180, self.canvas.winfo_height(),
-                                width = 1)
+        self.x_axis = self.canvas.create_line(
+            0, self.canvas.winfo_height()/2,
+            self.canvas.winfo_width(), self.canvas.winfo_height()/2,
+            width = 1)
+        self.y_axis = self.canvas.create_line(
+            self.canvas.winfo_width()/2-180, 0,
+            self.canvas.winfo_width()/2-180, self.canvas.winfo_height(),
+            width = 1)
+        
+    def resize(self, event):
+        self.canvas.delete(self.x_axis)
+        self.canvas.delete(self.y_axis)
+        self.draw_axis()
 
 root = Tk()
 MainFrame(root)
