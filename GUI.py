@@ -115,8 +115,6 @@ class MainFrame():
             y0 = y
         
     def resize(self, event):
-        self.canvas.delete("all")
-        self.draw_axis()
         self.draw_fn()
 
 root = Tk()
