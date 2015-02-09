@@ -75,6 +75,9 @@ class MainFrame():
             width = 1)
 
     def draw_fn(self):
+        self.flatline()
+
+    def flatline(self):
         self.wave = self.canvas.create_line(
             0, self.canvas.winfo_height()/2,
             self.canvas.winfo_width(), self.canvas.winfo_height()/2,
