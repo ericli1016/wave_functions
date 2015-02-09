@@ -37,7 +37,6 @@ class MainFrame():
         self.buildradio()
         
         parent.update()
-        self.draw_axis()
         self.draw_fn()
         self.canvas.bind("<Configure>",self.resize)        
         
@@ -47,22 +46,25 @@ class MainFrame():
             ("Flatline", 0),
             ("Square Wave", 1),
             ("Cosine Wave", 2)]
-
+        
         self.radiovariable.set(0)
 
         for text, mode in MODES:
             radiobttn = Radiobutton(self.radiobttnframe, text=text,
-                                    variable=self.radiovariable, value = mode)
+                                    variable=self.radiovariable, value = mode,
+                                    command=self.draw_fn)
             radiobttn.grid(row=mode, padx=20, sticky = W)
             self.radiobttnlist.append(radiobttn)
 
     def prev_mode(self):
         mode = self.radiovariable.get()
         self.radiovariable.set((mode - 1) % len(self.radiobttnlist))
+        self.draw_fn()
 
     def next_mode(self):
         mode = self.radiovariable.get()
         self.radiovariable.set((mode + 1) % len(self.radiobttnlist))
+        self.draw_fn()
 
     def draw_axis(self):
         x_axis = self.canvas.create_line(
@@ -75,7 +77,10 @@ class MainFrame():
             width = 1)
 
     def draw_fn(self):
-        self.cos_wave()
+        self.canvas.delete("all")
+        self.draw_axis()
+        fn_array = [self.flatline, self.square_wave, self.cos_wave]
+        fn_array[self.radiovariable.get()]()
 
     def flatline(self):
         self.canvas.create_line(
